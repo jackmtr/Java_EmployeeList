@@ -19,6 +19,19 @@ import com.contography.employeeList.data.Employee;
  */
 public class ListArranger {
 	
+	public static List<Employee> Reverse(List<Employee> employeeList){
+		
+		//will remake with better methods when learned
+		//shouldnt need to make a second list
+		List<Employee> reversedList = new ArrayList<Employee>();
+		
+		int size = employeeList.size();
+		for (int i = (size-1); i >= 0; i--){
+			reversedList.add(employeeList.get(i));
+		}
+		return reversedList;
+	}
+	
 	public static List<Employee> ArrangeByFirstName(List<Employee> employeeList){
 		
 		CompareByFirstName cs = new CompareByFirstName();
@@ -26,18 +39,6 @@ public class ListArranger {
 		
 		return employeeList;
 	}
-	
-	// sorting helper
-	private static class CompareByLength implements Comparator<Employee> {
-		@Override
-		public int compare(Employee e1, Employee e2) {
-			// our sorting criteria is length of string
-			int len1 = e1.getFirstName().length();
-			int len2 = e2.getFirstName().length();
-			return (len1 - len2);
-		}
-	}
-	
 	
 	private static class CompareByFirstName implements Comparator<Employee>{
 		@Override

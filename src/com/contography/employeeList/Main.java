@@ -34,8 +34,11 @@ public class Main {
 			
 			Display.PrintList(employeeList);
 			
+			Display.PrintList(ListArranger.Reverse(employeeList));
+			
 			List<Employee> firstNameArrangedList = ListArranger.ArrangeByFirstName(employeeList);
 			Display.PrintList(firstNameArrangedList);
+			
 		
 		}catch(FileNotFoundException e){
 			System.out.println(e.getMessage());		
