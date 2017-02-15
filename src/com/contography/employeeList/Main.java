@@ -8,8 +8,10 @@ package com.contography.employeeList;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.List;
 
 import com.contography.employeeList.DAO.EmployeeDAO;
+import com.contography.employeeList.data.Employee;
 
 //import java.io.File;
 
@@ -26,15 +28,20 @@ public class Main {
 		// TODO Auto-generated method stub
 		try{
 			FileInputStream fileStream = new FileInputStream("EmployeeListInput.xls");
-			EmployeeDAO.generateEmployeeList(fileStream);
+			List<Employee> employeeList = EmployeeDAO.generateEmployeeList(fileStream);
+			
+			for(Employee emp : employeeList){
+				System.out.println(emp.getFirstName() + " " + emp.getLastName() + ", " + emp.getPosition());
+			}
+			
 		}catch(FileNotFoundException e){
 			System.out.println(e.getMessage());		
 		}catch(Exception e){
 			System.out.println("General Error:"  + e.getMessage());		
 		}
 		
-		//have file name
-		//take info from file name to make list of employees
+			//have file name
+			//take info from file name to make list of employees
 		//take list of employees and sort it by first name and print
 		//reverse the list and reprint
 	}
