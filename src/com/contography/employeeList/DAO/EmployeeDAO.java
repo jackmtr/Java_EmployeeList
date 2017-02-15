@@ -6,11 +6,44 @@
  */
 package com.contography.employeeList.DAO;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.text.html.HTMLDocument.Iterator;
+
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+
+import com.contography.employeeList.data.Employee;
+
 /**
  * @author Jackie
  *
  */
 public class EmployeeDAO {
 
-	//
+	//take file and make a list out of them.
+	public static List<Employee> generateEmployeeList(FileInputStream fileInput) throws IOException{
+	
+//		HSSFWorkbook workbook1 = new HSSFWorkbook();
+//		workbook1.createSheet("FirstExcelSheet");
+//		workbook1.write(new FileOutputStream("EmployeeListInput1.xls"));
+		
+		List<Employee> employeeList = new ArrayList<Employee>();
+		
+		HSSFWorkbook workbook = new HSSFWorkbook(fileInput);
+		HSSFSheet sheet = workbook.getSheetAt(0);
+		HSSFRow row = sheet.getRow(0);		
+		
+		
+		System.out.println(row.getCell(0));
+		return employeeList;
+	}
 }
