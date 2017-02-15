@@ -14,6 +14,7 @@ import com.contography.employeeList.DAO.EmployeeDAO;
 import com.contography.employeeList.UI.Display;
 import com.contography.employeeList.data.Employee;
 import com.contography.employeeList.util.ListArranger;
+import com.contography.employeeList.util.Search;
 
 //import java.io.File;
 
@@ -32,23 +33,20 @@ public class Main {
 			FileInputStream fileStream = new FileInputStream("EmployeeListInput.xls");
 			List<Employee> employeeList = EmployeeDAO.generateEmployeeList(fileStream);
 			
-			Display.PrintList(employeeList);
+			Display.PrintList(employeeList, "Original");
 			
-			Display.PrintList(ListArranger.Reverse(employeeList));
+			Display.PrintList(ListArranger.Reverse(employeeList), "Reversed");
 			
 			List<Employee> firstNameArrangedList = ListArranger.ArrangeByFirstName(employeeList);
-			Display.PrintList(firstNameArrangedList);
+			Display.PrintList(firstNameArrangedList, "Sorted First Name");
 			
-		
+			Employee searchedEmployee = Search.searchByFirstName("Jackie", employeeList);
+			Display.PrintEmployee(searchedEmployee);
+			
 		}catch(FileNotFoundException e){
 			System.out.println(e.getMessage());		
 		}catch(Exception e){
 			System.out.println("General Error:"  + e.getMessage());		
 		}
-		
-			//have file name
-			//take info from file name to make list of employees
-			//take list of employees and sort it by first name and print
-		//reverse the list and reprint
 	}
 }
