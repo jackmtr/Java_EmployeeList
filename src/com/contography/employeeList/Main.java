@@ -11,7 +11,9 @@ import java.io.FileNotFoundException;
 import java.util.List;
 
 import com.contography.employeeList.DAO.EmployeeDAO;
+import com.contography.employeeList.UI.Display;
 import com.contography.employeeList.data.Employee;
+import com.contography.employeeList.util.ListArranger;
 
 //import java.io.File;
 
@@ -30,10 +32,11 @@ public class Main {
 			FileInputStream fileStream = new FileInputStream("EmployeeListInput.xls");
 			List<Employee> employeeList = EmployeeDAO.generateEmployeeList(fileStream);
 			
-			for(Employee emp : employeeList){
-				System.out.println(emp.getFirstName() + " " + emp.getLastName() + ", " + emp.getPosition());
-			}
+			Display.PrintList(employeeList);
 			
+			List<Employee> firstNameArrangedList = ListArranger.ArrangeByFirstName(employeeList);
+			Display.PrintList(firstNameArrangedList);
+		
 		}catch(FileNotFoundException e){
 			System.out.println(e.getMessage());		
 		}catch(Exception e){
@@ -42,7 +45,7 @@ public class Main {
 		
 			//have file name
 			//take info from file name to make list of employees
-		//take list of employees and sort it by first name and print
+			//take list of employees and sort it by first name and print
 		//reverse the list and reprint
 	}
 }
