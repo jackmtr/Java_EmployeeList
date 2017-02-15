@@ -41,7 +41,8 @@ public class Main {
 			Display.PrintList(firstNameArrangedList, "Sorted First Name");
 			
 			Employee searchedEmployee = Search.searchByFirstName("Jackie", employeeList);
-			Display.PrintEmployee(searchedEmployee);
+			if (searchedEmployee != null) 
+				Display.PrintEmployee(searchedEmployee);
 			
 		}catch(FileNotFoundException e){
 			System.out.println(e.getMessage());		

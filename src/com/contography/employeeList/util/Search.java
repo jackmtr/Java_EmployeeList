@@ -16,6 +16,8 @@ import com.contography.employeeList.data.Employee;
  */
 public class Search {
 
+	//This is a linear search (ineffective but simple)
+	//Learn the binary search later
 	public static Employee searchByFirstName(String keyword, List<Employee> list){
 		
 		System.out.print("Searching for: " + keyword + " -- ");
