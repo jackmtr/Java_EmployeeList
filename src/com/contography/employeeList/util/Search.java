@@ -18,9 +18,9 @@ public class Search {
 
 	//This is a linear search (ineffective but simple)
 	//Learn the binary search later
-	public static Employee searchByFirstName(String keyword, List<Employee> list){
+	public static Employee linearSearchByFirstName(String keyword, List<Employee> list){
 		
-		System.out.print("Searching for: " + keyword + " -- ");
+		System.out.print("Linear Search for first name : " + keyword + " -- ");
 		
 		for(Employee emp : list){
 			if (emp.getFirstName().equals(keyword)){
@@ -29,6 +29,30 @@ public class Search {
 			}
 		}
 		System.out.println("Person was not found");
+		return null;
+	}
+	
+	public static Employee binarySearchByLastName(String keyword, List<Employee> list){
+		
+		int lowIndex = 0;
+		int highIndex = list.size() - 1;
+		int middleIndex = (lowIndex + highIndex)/2;
+		
+		int hashedKeyword = keyword.hashCode();
+		
+		System.out.print("Binary Search for last name : " + keyword + " -- ");
+		
+		while(lowIndex < highIndex){
+			if (hashedKeyword == list.get(middleIndex).getLastName().hashCode()){
+				System.out.println("Person was found");
+				return list.get(middleIndex);
+			}else if(hashedKeyword > list.get(middleIndex).getLastName().hashCode()){
+				lowIndex = middleIndex + 1;
+			}else if(hashedKeyword < list.get(middleIndex).getLastName().hashCode()){
+				highIndex = middleIndex -1;
+			}
+		}
+		System.out.print("Person was not found");
 		return null;
 	}
 }

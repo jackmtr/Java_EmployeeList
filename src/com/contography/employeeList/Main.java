@@ -28,22 +28,32 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+
 		try{
 			FileInputStream fileStream = new FileInputStream("EmployeeListInput.xls");
-			List<Employee> employeeList = EmployeeDAO.generateEmployeeList(fileStream);
 			
-			Display.PrintList(employeeList, "Original");
-			
-			Display.PrintList(ListArranger.Reverse(employeeList), "Reversed");
-			
-			List<Employee> firstNameArrangedList = ListArranger.ArrangeByFirstName(employeeList);
-			Display.PrintList(firstNameArrangedList, "Sorted First Name");
-			
-			Employee searchedEmployee = Search.searchByFirstName("Jackie", employeeList);
-			if (searchedEmployee != null) 
-				Display.PrintEmployee(searchedEmployee);
-			
+			try{
+				List<Employee> employeeList = EmployeeDAO.generateEmployeeList(fileStream);
+				
+				Display.PrintList(employeeList, "Original");
+				
+				Display.PrintList(ListArranger.Reverse(employeeList), "Reversed");
+				
+				List<Employee> firstNameArrangedList = ListArranger.ArrangeByFirstName(employeeList);
+				Display.PrintList(firstNameArrangedList, "Sorted First Name");
+				
+				Employee searchedEmployee = Search.linearSearchByFirstName("Jackie", employeeList);
+				if (searchedEmployee != null) 
+					Display.PrintEmployee(searchedEmployee);
+				
+				searchedEmployee = Search.binarySearchByLastName("Cheng", employeeList);
+				if (searchedEmployee != null)
+					Display.PrintEmployee(searchedEmployee);
+			}catch(Exception e){
+				throw e;
+			}finally{
+				fileStream.close();
+			}
 		}catch(FileNotFoundException e){
 			System.out.println(e.getMessage());		
 		}catch(Exception e){

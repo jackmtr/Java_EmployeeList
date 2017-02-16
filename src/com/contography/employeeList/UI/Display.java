@@ -34,5 +34,7 @@ public class Display {
 	public static void PrintEmployee(Employee employee){
 		System.out.println(employee.getFirstName() + " " + employee.getLastName() + " : " + employee.getPosition());
 		System.out.println("Phone Number : " + employee.getPhoneNumber());
+		System.out.println();
+		System.out.println();
 	}
 }

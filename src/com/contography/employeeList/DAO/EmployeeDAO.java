@@ -31,8 +31,8 @@ public class EmployeeDAO {
 		@SuppressWarnings("resource")
 		HSSFWorkbook workbook = new HSSFWorkbook(fileInput);
 		HSSFSheet sheet = workbook.getSheetAt(0);
-
-		for (int i = 0; i < (sheet.getPhysicalNumberOfRows() - 1); i++){
+	
+		for (int i = 0; i <= (sheet.getPhysicalNumberOfRows() - 1); i++){
 			HSSFRow row = sheet.getRow(i);
 			
 			row.getCell(2).setCellType(CellType.STRING);
@@ -40,6 +40,7 @@ public class EmployeeDAO {
 			Employee newEmployee = new Employee(row.getCell(0).toString(), row.getCell(1).toString(), row.getCell(2).toString(), (int)Double.parseDouble(row.getCell(3).toString()), row.getCell(4).toString(), Double.parseDouble(row.getCell(5).toString()));
 			employeeList.add(newEmployee);
 		}
+		workbook.close();
 		return employeeList;
 	}
 }
