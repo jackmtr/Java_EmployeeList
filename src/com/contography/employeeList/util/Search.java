@@ -18,43 +18,55 @@ public class Search {
 
 	public static Employee linearSearchByFirstName(String keyword, List<Employee> list){
 		
+		int counter = 1;
 		keyword = keyword.trim().substring(0, 1).toUpperCase() + keyword.trim().substring(1).toLowerCase();
 		
 		System.out.print("Linear Search for first name : " + keyword + " -- ");
 		
 		for(Employee emp : list){
 			if (emp.getFirstName().equals(keyword)){
-				System.out.println("Person was found");
+				System.out.println("Person was found, " + counter + " attempts.");
 				return emp;
+			}else{
+				counter++;
 			}
 		}
-		System.out.println("Person was not found");
+		System.out.println("Person was not found, " + counter + " attempts.");
 		return null;
 	}
 	
-	public static Employee binarySearchByLastName(String keyword, List<Employee> list){
+	public static Employee binarySearchByFirstName(String keyword, List<Employee> list){
 		
-		keyword = keyword.trim().substring(0, 1).toUpperCase() + keyword.trim().substring(1).toLowerCase();
+		list = ListArranger.ArrangeByFirstNameLexicographically(list);
 		
+		int counter = 1;
 		int lowIndex = 0;
 		int highIndex = list.size() - 1;
-		int middleIndex = (lowIndex + highIndex)/2;
+		int midIndex = 0;
 		
-		int hashedKeyword = keyword.hashCode();
+		String caseInsensitiveKeyword = keyword.trim().toLowerCase();
 		
-		System.out.print("Binary Search for last name : " + keyword + " -- ");
+		System.out.print("Binary Search for first name : " + keyword + " -- ");
 		
-		while(lowIndex < highIndex){
-			if (hashedKeyword == list.get(middleIndex).getLastName().hashCode()){
-				System.out.println("Person was found");
-				return list.get(middleIndex);
-			}else if(hashedKeyword > list.get(middleIndex).getLastName().hashCode()){
-				lowIndex = middleIndex + 1;
-			}else if(hashedKeyword < list.get(middleIndex).getLastName().hashCode()){
-				highIndex = middleIndex -1;
+		while(lowIndex <= highIndex){
+			
+			midIndex = (lowIndex + highIndex)/2;
+			if (caseInsensitiveKeyword.compareToIgnoreCase(list.get(midIndex).getFirstName()) > 0){
+				lowIndex = midIndex +1;
+				counter++;
+			}else if (caseInsensitiveKeyword.compareToIgnoreCase(list.get(midIndex).getFirstName()) < 0){
+				highIndex = midIndex -1;
+				counter++;
+			}else{
+				break;
 			}
 		}
-		System.out.print("Person was not found");
-		return null;
+		if (lowIndex > highIndex){
+			System.out.print("Person was not found, " + counter + " attempts.");
+			return null;
+		}else{
+			System.out.println("Person was found, " + counter + " attempts.");
+			return list.get(midIndex);
+		}
 	}
 }

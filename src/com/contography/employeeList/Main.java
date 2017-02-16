@@ -42,11 +42,13 @@ public class Main {
 				List<Employee> firstNameArrangedList = ListArranger.ArrangeByFirstName(employeeList);
 				Display.PrintList(firstNameArrangedList, "Sorted First Name");
 				
+				//avg attempts = size()/2, max attempts = size()
 				Employee searchedEmployee = Search.linearSearchByFirstName("Jackie", employeeList);
 				if (searchedEmployee != null) 
 					Display.PrintEmployee(searchedEmployee);
 				
-				searchedEmployee = Search.binarySearchByLastName("Cheng", employeeList);
+				//max attempts = log base 2 (7) = 2.8 ~ 3
+				searchedEmployee = Search.binarySearchByFirstName("Jackie", employeeList);
 				if (searchedEmployee != null)
 					Display.PrintEmployee(searchedEmployee);
 			}catch(Exception e){

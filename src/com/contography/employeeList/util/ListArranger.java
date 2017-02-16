@@ -40,6 +40,14 @@ public class ListArranger {
 		return employeeList;
 	}
 	
+	public static List<Employee> ArrangeByFirstNameLexicographically(List<Employee> employeeList){
+		
+		CompareByFirstNameLexicographically cs = new CompareByFirstNameLexicographically();
+		Collections.sort(employeeList, cs);
+		
+		return employeeList;
+	}	
+	
 	private static class CompareByFirstName implements Comparator<Employee>{
 		@Override
 		public int compare(Employee e1, Employee e2){
@@ -47,6 +55,22 @@ public class ListArranger {
 			int value = e1.getFirstName().substring(0,1).compareTo(e2.getFirstName().substring(0,1));
 
 			return value;
+		}
+	}
+	
+	private static class CompareByFirstNameLexicographically implements Comparator<Employee>{
+
+		/* (non-Javadoc)
+		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
+		 */
+		@Override
+		public int compare(Employee e1, Employee e2) {
+			
+			int value = e1.getFirstName().compareToIgnoreCase(e2.getFirstName());
+			if(value != 0){
+				return value;
+			}
+			return e1.getLastName().compareToIgnoreCase(e2.getLastName());
 		}
 	}
 }
