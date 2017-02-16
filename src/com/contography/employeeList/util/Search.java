@@ -16,9 +16,9 @@ import com.contography.employeeList.data.Employee;
  */
 public class Search {
 
-	//This is a linear search (ineffective but simple)
-	//Learn the binary search later
 	public static Employee linearSearchByFirstName(String keyword, List<Employee> list){
+		
+		keyword = keyword.trim().substring(0, 1).toUpperCase() + keyword.trim().substring(1).toLowerCase();
 		
 		System.out.print("Linear Search for first name : " + keyword + " -- ");
 		
@@ -33,6 +33,8 @@ public class Search {
 	}
 	
 	public static Employee binarySearchByLastName(String keyword, List<Employee> list){
+		
+		keyword = keyword.trim().substring(0, 1).toUpperCase() + keyword.trim().substring(1).toLowerCase();
 		
 		int lowIndex = 0;
 		int highIndex = list.size() - 1;

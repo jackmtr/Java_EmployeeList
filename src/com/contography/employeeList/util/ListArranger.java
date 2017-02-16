@@ -21,7 +21,7 @@ public class ListArranger {
 	
 	public static List<Employee> Reverse(List<Employee> employeeList){
 		
-		//will re-make with better methods when learned
+		//will re-make with better methods when learned more about node manipulation
 		//shouldn't need to make a second list
 		List<Employee> reversedList = new ArrayList<Employee>();
 		

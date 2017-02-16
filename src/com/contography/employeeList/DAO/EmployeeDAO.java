@@ -28,7 +28,6 @@ public class EmployeeDAO {
 	
 		List<Employee> employeeList = new ArrayList<Employee>();
 		
-		@SuppressWarnings("resource")
 		HSSFWorkbook workbook = new HSSFWorkbook(fileInput);
 		HSSFSheet sheet = workbook.getSheetAt(0);
 	
